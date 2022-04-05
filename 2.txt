@@ -1,0 +1,15 @@
+#include <iostream>
+    using namespace std;
+    int main()
+        {
+            cout<<"Vvedi X"<<endl;
+            int x;
+            cin>>x;
+            if(x==4) cout<<"X ravno chetire"<<endl;
+            if(x==3) cout<<"X ravno tri"<<endl;
+            if(x==2) cout<<"X ravno dva"<<endl;
+            if(x==1) cout<<"X ravno odin"<<endl;
+               if(x>4||x<1) cout<<"X ne podhodit promezhutku"<<endl;
+            return 0;
+            system("PAUSE");
+        }

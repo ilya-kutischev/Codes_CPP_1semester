@@ -1,0 +1,68 @@
+1. одно число ввод. заменить все цифры семь в числе на 1
+2. ввод послед чисел опр колво четных чисел использовать функцию . в этом же числе
+
+#include <iostream>
+using namespace std;
+
+int
+FChetn (int x) 
+{
+  int fl;
+  
+if (x%2==0)
+    fl = 1;
+  
+  else if (x%2==1)
+    fl = 0;
+  
+  else
+    fl = 2;
+  
+ 
+return fl;
+
+}
+
+
+ 
+int
+main ()
+{
+  
+int i, n, chislo, fl, count = 0;
+  
+ 
+cout << "Vvedi n ";
+  cin >> n;
+  
+for (i = 1; i <= n; i++)
+    {
+      
+cout << "Vvedi chislo: ";
+      cin >> chislo;
+      
+fl = FChetn(chislo);
+      
+ if (fl == 1)
+	{
+	  cout << "Chetnoe" << endl;
+	  count++;
+	}
+      
+      else
+	{
+	  cout << "Nechetnoe" << endl;
+	
+	}
+     
+    
+}
+  
+cout << "Vsego chetnih " << count << endl;
+  
+return 0;
+  
+system ("PAUSE");
+
+}
+

@@ -1,0 +1,53 @@
+// Пример 5. Определить количество единиц в двоичном представлении
+
+// целого беззнакового числа двумя способами. Используя
+
+// а)арифметические операции, б) битовые операции.
+
+#include<iostream>
+
+using namespace std;
+
+int main(){
+
+    unsigned int num, num1;
+
+    int kol, m;
+
+    cout << "vvedy chiclo: ";     cin >> num;
+
+    cout<<"num = " << num << "   " << hex << num << endl;
+
+    num1 = num;
+
+    cout << " NUMrithmetic opernumtion == \n";
+
+    kol = 0;
+
+    while (num) {
+
+        if (num % 2 == 1) kol++;
+
+        num = num / 2;
+
+    }
+
+    cout << " number of units = " << kol << endl << endl;
+
+ 
+
+    cout << " Bitovie operation == \n";
+
+    kol = 0;   m = 1;
+
+    while (num1) {
+
+        if ((num1 & m) == 1) kol++;               // скобки нужны из-за приоритета операций
+
+        num1 >>= 1;                                          // или num1= num1 >> 1;
+
+    }
+
+    cout << "  number of units = " << kol << endl;
+
+}

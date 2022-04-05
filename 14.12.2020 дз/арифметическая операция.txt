@@ -1,0 +1,65 @@
+//// Дано число типа int.  Вывести его цифры (в 16-ой  с/с) в прямом порядке двумя способами. Используя арифметические операции
+
+#include <iostream>
+
+using namespace std;
+
+int  main(){
+
+    int n;   // число задано как 10-ое
+    
+    cout<<"vvedi chislo "<<endl;
+
+cin>>n;
+
+    cout << "n_10= " <<n << endl;
+
+//   cout.unsetf(ios::dec);
+
+//   cout.setf(ios::hex);
+
+    int cifra,n1;
+
+    n1=n;
+    
+    cout<<"n_16 = ";
+    
+     for(int j=0; j<=8; j++){
+        
+        n=n1;
+
+    for (int i = j; i <= 8; i++) {
+
+        cifra = n % 16;
+
+     
+
+        n = n / 16;
+
+
+
+    } if(cifra >= 0 && cifra <= 9) cout<<cifra;
+
+             switch(cifra)
+
+             {
+
+                case 10:cout<<'A';break;
+
+                case 11:cout<<'B';break;
+
+                case 12:cout<<'C';break;
+
+                case 13:cout<<'D';break;
+
+                case 14:cout<<'E';break;
+
+                case 15:cout<<'F';break;
+
+             }
+    
+    }
+
+
+
+}

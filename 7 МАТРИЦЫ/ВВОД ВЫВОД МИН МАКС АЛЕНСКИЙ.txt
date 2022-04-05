@@ -1,0 +1,115 @@
+// Пример 1. (постановка Аленского Н.А.) Даны два массива x[n] и y[n].
+
+// Построить третий массив z[n]. Составить и использовать 3 функции.
+
+// Первая функция, отличная от void, вычисляет для двух простых
+
+// неиндексированных переменных u и v (а не x[i] y[i])  r1 = min(u,v).
+
+// Вторая функция, отличная от void, вычисляет для двух простых
+
+// неиндексированных переменных u и v (а не x[i] y[i])) r2=max(u,v).
+
+// Третья функция с помощью первой и второй функций строит новый
+
+// массив z[n] по правилу:  z[i] = min(x[i], y[i]), если (x[i] + y[i] >= 2),
+
+// иначе  z[i] = max(x[i], y[i]).
+
+// В main() массивы x и y определить  и проверить работу функций.
+
+ 
+
+#include <iostream>
+
+using namespace std;
+
+void vvodMas(int[], int);                                        // прототипы функций
+
+void vivodMas(int[], int);
+
+void rezMas(int[], int[], int[], int);
+
+int min(int u, int v);
+
+int max(int u, int v);
+
+const int DIM = 50;
+
+int main(){
+
+    int x[DIM], y[DIM], z[DIM], n;
+
+    cout << "Enter size  n: ";      cin >> n;
+
+    cout << "Vvedi massiv X\n";
+
+    vvodMas(x, n);
+
+    cout << "    Isxodni massiv X:\n   ";
+
+    vivodMas(x, n);
+
+    cout << "Vvedi massiv Y\n";
+
+    vvodMas(y, n);
+
+    cout << "     Isxodni massiv Y:\n   ";
+
+    vivodMas(y, n);
+
+    rezMas(x, y, z, n);
+
+    cout << "\n    Massiv Z:\n   ";
+
+    vivodMas(z, n);
+
+}
+
+void vvodMas(int mas[], int n) {                 // функция vvodMas()
+
+    for (int i = 0; i < n; i++)
+
+        cin >> mas[i];
+
+}
+
+ 
+
+void vivodMas(int mas[], int n) {                // функция vivodMas()
+
+    for (int i = 0; i < n; i++)
+
+        cout << mas[i] << ' ';
+
+    cout << endl;
+
+}
+
+int min(int u, int v) {                                     // функция min()
+
+    if (u < v) return u;
+
+    else return v;
+
+}
+
+int max(int u, int v) {                                     // функция max()
+
+    if (u > v) return u;
+
+    else return v;
+
+}
+
+void rezMas(int x[], int y[], int z[], int n) { // функция rezMas()
+
+    for (int i = 0; i < n; i++)
+
+        if (x[i] + y[i] >= 2) z[i] = min(x[i], y[i]);
+
+        else z[i] = max(x[i], y[i]);
+
+}
+
+ 

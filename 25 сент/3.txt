@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+ char z;
+ 
+ double a, x, y;
+ 
+ 
+ cout<<"vvedi x, + - * / i y"<<endl;
+ 
+ cin>>x>>z>>y;
+ 
+ 
+
+switch (z)
+ {
+    case '*':
+    a=x*y; cout<<a; break;
+    case '+':
+    a=x+y; cout<<a; break;
+     case '-':
+    a=x-y; cout<<a; break;
+     case '/':
+        if(!y==0) {a=x/y; cout<<a;}
+            else cout<<"error"; break;
+        
+        default: cout<<"error";
+     }
+ 
+ return 0;
+ //system "pause";
+}

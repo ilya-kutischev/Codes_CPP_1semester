@@ -1,0 +1,15 @@
+#include iostream
+    using namespace std;
+    int main()
+        {
+            coutVVedi A, Bendl;
+            int a,b;
+            cinab;
+                if(a==0)
+                    if(b==0)
+                    coutLuboeendl;
+                    else   coutNet resheniyendl;
+                else {coutX= float(b)float(a)endl;}
+            return 0;
+            system(PAUSE);
+        }

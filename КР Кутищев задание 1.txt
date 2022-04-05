@@ -1,0 +1,69 @@
+//В массиве mas(n)  найти максимальный элемент (первый) среди элементов, у которых позиция (слева) первой максимальной цифры чётная. Определить,
+ //сколько раз максимальная цифра встречается в нём (за один просмотр числа),
+ //и вставить после него заданное число (введённое).
+
+//Например, в числе 158328  первая максимальная цифра равна 8, её позиция равна трём (слева).
+
+#include <iostream>
+using namespace std;
+int positionMaxChotn(int n);
+int KolMax(int n);
+const int DIM = 50;//massiv с фиксированной размерностью
+int main()
+{
+	int a[DIM], n;//razmernost
+	cout << "Enter size massiva n: ";     cin >> n;
+	cout << "Enter massiv: ";
+	for (int i = 0; i < n; i++) {
+		cin >> a[i];
+	}
+	cout << "Enter chislo diya vstavki: ";
+	int vst;
+	cin >> vst;
+	int positionMax = 0, max = a[0];
+	for (int i = 0; i < n; i++) {
+
+		if (positionMaxChotn(a[i])) {
+
+			if (max < a[i]) { max = a[i]; positionMax = i; }
+		}
+
+	}
+	for (int i = n; i > positionMax; i--) {
+		a[i + 1] = a[i];
+	}
+	a[positionMax + 1] = vst;
+
+	cout << "poluchivshiysa massiv" << endl;
+
+	for (int i = 0; i < n + 1; i++) {
+		cout << a[i] << " ";
+	}
+	cout<<endl<<KolMax(a[positionMax]);
+}
+
+int positionMaxChotn(int n) {  //вычисляет является ли позиция масимальной цифры чтной
+	int n1, fl = 0; n1 = n;
+	int max = 0, position = 1, positionMax = 0, colvoCifr = 0;
+	while (n) {
+		if (max <= (n % 10)) { max = n % 10; positionMax = position; }
+		position++;
+		n = n / 10;
+		colvoCifr++;
+	}
+	if ((colvoCifr - positionMax + 1) % 2 == 0)fl = 1;
+	return(fl);
+
+}
+int KolMax(int n) {
+	int max = 0, colMax = 0;
+	while (n) {
+		
+		if (max < (n % 10)) {
+			max = n % 10; colMax = 0;
+		}
+		if(max== n % 10) colMax++;
+		n = n / 10;
+	}
+	return colMax;
+}

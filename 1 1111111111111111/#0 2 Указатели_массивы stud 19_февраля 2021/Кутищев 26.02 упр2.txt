@@ -1,0 +1,126 @@
+/*В массив mas[n], упорядоченный по возрастанию, вставить k заданных элементов,
+ не нарушая его упорядоченности. Дополнительный массив не использовать. */
+
+#include <iostream>
+
+#include <ctime>
+
+using namespace std;
+
+void enterNumbersInArray(int*, int* n);
+
+const int DIM = 50;
+
+int main() {
+    int fl = 1;
+    while (true) {
+        system("cls");
+
+    int a[DIM];
+
+    int n, x;
+
+    cout << " Enter size of array n: ";      cin >> n;
+
+    // cout << "Enter massiv: " << endl;
+
+    srand(time(NULL));                                      // автоматическая рандомизация
+
+    // srand(n);
+
+    for (int i = 0; i < n; i++)
+
+        a[i] = rand() % 15 - 7;
+
+    cout << "Original Array:\n";                       // вывод массива
+
+    for (int i = 0; i < n; i++)
+
+        cout << a[i] << ' ';
+
+    cout << endl;
+    int fl = 1;
+    for (int i = 1; i < n; i++) {     // сортировка массива
+        for (int j = 0; j < n - i; j++)
+            if (a[j] < a[j + 1]) { fl = 0; break; }           
+        if (fl)  break;                            //теперь при обнаружении уже упорядоченного массива цикл прервется
+
+        for (int j = 0; j < n - i; j++)             
+
+            if (a[j] > a[j + 1])
+
+            {
+
+                x = a[j];    a[j] = a[j + 1];   a[j + 1] = x;
+
+            }
+
+    }
+
+    cout << "Sorted Array:\n";
+
+    for (int i = 0; i < n; i++)
+
+        cout << a[i] << ' ';
+
+    cout << endl;
+
+
+
+    enterNumbersInArray(a, &n);
+
+    cout << endl;
+
+    cout << "Sorted array including entred numbers:\n";
+
+    for (int i = 0; i < n; i++)
+
+        cout << a[i] << ' ';
+
+  
+    cout << endl;
+    cout << "======================" << endl;
+    cout << "|  wanna continue?   |" << endl;
+    cout << "|  1 = yes, 0 = no   |" << endl;
+    cout << "======================" << endl;        //простое меню для удобства
+    cin >> fl;
+    if (!fl) { cout << "Good bye!"; break; }
+    }
+}
+void enterNumbersInArray(int* a, int* n) {
+    cout << "Enter k" << endl;
+
+    int k, num;
+
+    cin >> k;
+
+    for (int i = 0; i < k; i++) {
+
+        cout <<endl<< "enter " << i + 1 << " number to enter:  ";
+
+        cin >> num;                                   //вводим число
+        
+        for (int j = 0; j <= *n + i; j++) {
+           
+            if (*(a + j) < num) {
+                if(j == *n + i) *(a + j) = num;   //если цикл прошел, а числа меньше не нашлось, вставляем в конец.
+                    continue;
+            }                               //находим нужное место по сортировке
+
+            else {
+
+                for (int q = *n + i; q >= j; q--) {
+
+                    *(a + q + 1) = *(a + q);           //двигаем остальные элементы 
+                }
+
+                *(a + j) = num;                        //вставляем число
+
+                break;
+            }
+        }
+
+    }
+    *n += k;
+
+}

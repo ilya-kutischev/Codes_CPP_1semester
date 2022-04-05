@@ -1,0 +1,61 @@
+/*2.	Определить, сколько в заданной строке слов,
+ длина которых – простое число.
+ Вывести такие слова на экран.*/
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+
+int FProst(int x);
+int printPrimeWords(char* p);
+int main() {
+    int n, primeWords;
+    cout << "Enter max number simvolov v stroke: ";
+    cin >> n;
+    char* pstr = new char[++n];
+    cin.ignore();
+    cout << "Enter stroku: ";  gets_s(pstr, n);	// aSdDfgF
+    cout << "Selected words:" << endl;
+    primeWords = printPrimeWords(pstr);                  //вывод слов
+    cout << "amount of prime words: "<< primeWords;
+    delete[] pstr;
+}
+
+int FProst(int x) {                 //проверка на простое
+    int y, d = 2, fl = 1;
+    y = x / 2;
+    while (y >= d)
+    {
+        if (x % d == 0) { fl = 0; d++; }       //если найдется хоть один делитель, fl меняется на 0, начит число сложное.
+        else d++;
+    }
+    return fl;
+}
+
+int printPrimeWords(char* p){
+    int n = 0, primeWords = 0;
+    while (*p) {
+        if (*p != ' '&& (*(p + 1))) {     //если в ячейке буква то считаем длину слова
+            n++; p++; continue;
+        }
+
+        if ((*p == ' ' ||!(*(p + 1))) && FProst(n)) {   //если в ячейке пробел или это конец слова то проверяем на простоту
+            for (int i = n; i >= 0; i--) {              //если подошло то выводим
+                cout << *(p - i);
+            }
+            n = 0;
+            cout << endl;
+            primeWords++;
+        }
+        else {           //если нет обнуляем счетчик
+            n = 0;
+        }
+        p++;
+    }
+    return primeWords;
+}
+
+
+
+

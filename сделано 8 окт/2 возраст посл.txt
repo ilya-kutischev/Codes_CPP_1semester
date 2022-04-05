@@ -1,0 +1,29 @@
+#include <iostream>
+using namespace std;
+int FPosl(int x)
+{int s=10,d,e;
+  while(x!=0)
+  {d=x%10;
+  if(s<d) {e=0; break;};
+   s=d;
+  x=x/10;
+
+}
+if(x==0) e=1;
+return e;
+}
+
+ int main(){
+   int i, n,  chislo,e , count=0;
+  
+   cout<<"Vvedi n ";  cin>>n;
+   for(i=1;i <= n; i++){
+      cout<<"Vvedi chislo ";  cin>>chislo;
+        e=FPosl(chislo);
+        if(e==1){cout<<"Obrazuet"<<endl;count++;}
+        else cout<<"ne obrazuet"<<endl;
+}
+cout<<"Vsego chisel s vozrastayshei posled  "<<count<<endl;
+	     return 0;
+  system("PAUSE");
+}

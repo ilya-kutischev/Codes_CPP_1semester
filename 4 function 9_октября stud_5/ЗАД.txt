@@ -1,0 +1,25 @@
+#include <iostream>
+using namespace std;
+
+
+ int main()
+ {
+  int s=0,razm=0,razmNaibolsh=0;
+  long x,x1,posled=0,poslednaibolsh;
+  cout<<"Vvedi chislo "<<endl;
+cin>>x;
+x1=x;
+x=0;
+while(x1){
+x=x*10+x1%10;
+x1=x1/10;
+}
+
+    while(x){
+if(x%10>s){s=x%10;posled=posled*10+x%10;x=x/10;razm++;} 
+if(x%10<=s&&razm>razmNaibolsh){poslednaibolsh=posled;razmNaibolsh=razm;s=0;razm=0;posled=0;} 
+ }
+cout<<"Naibolshaya posled "<<poslednaibolsh<<endl;
+	     return 0;
+  system("PAUSE");
+}

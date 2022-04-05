@@ -1,0 +1,18 @@
+//вводитс€ число. программа выводит число замен€€ цифры 7 на 1.
+#include <iostream>
+using namespace std;
+int main(){
+int x=0, x1;
+cout << "Vvedi chislo " << endl;
+cin >> x1;
+for(int i=2;i;i--){
+while (x1) {
+     if(x1%10==7) x = x * 10 + 1;
+     else x = x * 10 + x1 % 10;  
+        x1 = x1 / 10;    
+} x1=x; x=0;}
+cout<<"chislo bez 7:"<<endl<<x1;
+}
+
+
+

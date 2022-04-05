@@ -1,0 +1,68 @@
+#include <iostream>
+using namespace std;
+int FProst(int x);
+int SumCifr(int x);
+const int DIM = 50;
+int main()
+{
+	int a[DIM], n;
+
+	while (true) {                                                  // проверка корректности ввода
+
+		system("cls");                                       // очистить экран
+
+		cout << "Enter n:";         cin >> n;     // 5
+
+		if (n > 1 && n < DIM) break;
+
+		cout << "Nocorrect n\n";
+
+	}
+
+	srand(n);                                                         // для получения разных чисел
+
+	cout << "\n\t 1___Massiv a(n)\n";
+
+	for (int i = 0; i < n; i++)
+
+		a[i] = rand() % 50 + 1;                          // числа от 1 до 50
+
+	for (int i = 0; i < n; i++)
+
+	
+		cout << a[i] << ' ';
+	
+
+	int num=51, maxsum = 0;
+	for (int i = 0; i < n; i++) {
+		if ( FProst(a[i])) {                                    // проверка на простое
+			if (maxsum < SumCifr(a[i])) { maxsum = SumCifr(a[i]); num = i; }        //проверка на сумму цифр
+		}
+	}
+
+
+	if(num<50)cout << "pervoe prostoe s maximalnoi summoi cifr= "<< a[num];
+	else cout<<"net prostih chisel";
+
+	return 0;
+	system("PAUSE");
+
+}
+int FProst(int x) {
+	int y, d = 2, fl = 1;
+	y = x / 2;
+	while (y >= d)
+	{
+		if (x % d == 0) {fl = 0; d++;}       //если найдется хоть один делитель, fl меняется на 0, начит число сложное.
+		else d++;
+	}
+	return fl;
+}
+int SumCifr(int x) {
+	int sum=0;
+	while (x) {
+		sum = sum + x % 10;                 //нахождение суммы цифр
+		x = x / 10;
+	}
+	return sum;
+}

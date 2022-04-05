@@ -1,0 +1,32 @@
+#include <iostream>
+#include<math.h>
+using namespace std;
+int FPoly(int n){
+   int i=0 ,ch,obr=0,t,proove;
+   ch=n;
+   while(n){
+      n=n/10; i++;
+        }
+        n=ch;
+     for(t=0;t<i;){ 
+     obr=obr+(n%10)*pow(10,i-t);
+     n=n/10;
+     t++;}
+     if(ch==obr/10) proove=1;
+     else proove=0;
+     return proove;
+     
+}
+ int main(){
+     int proove,o,x,i;
+     cout<<"Vvedi n "<<endl;  cin>>o;
+        for(i=1;i <= o; i++){
+     cout<<"vvedi chislo"<<endl;
+     cin>>x;
+     proove=FPoly(x);
+     if(proove)cout<<"chislo polinom"<<endl;
+     else cout<<"chislo ne polinom"<<endl;
+     }
+	     return 0;
+  system("PAUSE");
+}

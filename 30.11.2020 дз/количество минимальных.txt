@@ -1,0 +1,39 @@
+// Составить функцию, которая для одномерного массива определяет, сколько в нём минимальных элементов (за один просмотр массива).
+
+#include<iostream>
+
+using namespace std;
+
+const int DIM = 50;
+int kolMin(int a[], int n);
+
+int main() {
+
+	setlocale(LC_ALL, "rus");
+
+	int a[DIM], n;
+
+	cout << "Введите размер массива: "; cin >> n;
+
+	cout << "Введите массив: " << endl;
+
+	for (int i = 0; i < n; i++)
+
+		cin >> a[i];
+	int kolvo;
+	kolvo=kolMin(a, n);
+	cout << "Минимальное число встретилось " << kolvo << " раз";
+}
+int kolMin(int a[], int n) {
+	int min = a[1], kolvo = 0;
+
+	for (int i = 0; i < n; i++) {
+
+		if (a[i] == min)kolvo++;   //если находит подобное наименьшее- увеличивает количество
+
+		if (a[i] < min) { min = a[i]; kolvo = 1; }//если нашлось число меньше
+	}                        
+	
+	return kolvo;
+	
+}

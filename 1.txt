@@ -1,0 +1,15 @@
+#include <iostream>
+    using namespace std;
+    int main()
+        {
+            cout<<"Vvedi raznie X, Y, Z"<<endl;
+            int x,y,z;
+            cin>>x>>y>>z;
+            if(x>y&&x>z)
+            cout<<"X-naibolshee = "<<x<<endl;
+            if(y>z)
+            cout<<"Y-naibolshee = "<<y<<endl;
+            else cout<<"Z-naibolshee = "<<z<<endl;
+            return 0;
+            system("PAUSE");
+        }

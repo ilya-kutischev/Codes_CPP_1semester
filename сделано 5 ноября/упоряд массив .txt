@@ -1,0 +1,61 @@
+//ускорить сортировку массива, добавив проверку на отсортированный массив.
+#include <iostream>
+
+#include <ctime>
+
+using namespace std;
+
+const int DIM = 50;
+
+int main() {
+
+    int a[DIM];
+
+    int n, x;
+
+    cout << " Enter size massiva n: ";      cin >> n;
+
+    // cout << "Enter massiv: " << endl;
+
+    srand(time(NULL));                                      // автоматическая рандомизация
+
+    // srand(n);
+
+    for (int i = 0; i < n; i++)
+
+        a[i] = rand() % 15 - 7;
+
+    cout << "Isxodni massiv:\n";                       // вывод массива
+
+    for (int i = 0; i < n; i++)
+
+        cout << a[i] << ' ';
+
+    cout << endl;
+    int fl = 1;
+    for (int i = 1; i < n; i++) {     // сортировка массива
+        for (int j = 0; j < n - i; j++)
+            if (a[j] < a[j + 1]) { fl = 0; break; }           //теперь при обнаружении уже упорядоченного массива цикл прервется
+        if (fl)  break; 
+
+        for (int j = 0; j < n - i; j++)             // не эффективная
+
+            if (a[j] > a[j + 1])
+
+            {
+
+                x = a[j];    a[j] = a[j + 1];   a[j + 1] = x;
+
+            }
+
+    }
+
+    cout << "Otsortirovanni massiv:\n";
+
+    for (int i = 0; i < n; i++)
+
+        cout << a[i] << ' ';
+
+    cout << endl;
+
+}

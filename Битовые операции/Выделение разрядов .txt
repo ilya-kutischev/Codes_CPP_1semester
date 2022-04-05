@@ -1,0 +1,47 @@
+// Пример 4. Выделение разрядов, используя операции  >> и  &.
+
+#include <iostream>
+
+using namespace std;
+
+int main(){
+
+short m, num = 2;
+
+cout<<"num = "<<num<<endl;
+
+// Выделение 0, 1, 2 разрядов. Изменяем исходное число.
+
+int bit = 1;                            m = num & bit;
+
+cout<<"m = "<<m<<endl;
+
+num = num >> 1;                m = num & bit;              // или num >>= 1;
+
+cout<<"m = "<<m<<endl;
+
+num = num >> 1;                m = num & bit;
+
+cout<<"m = "<<m<<endl;
+
+cout<<"num = "<<num<<endl;
+
+cout<<"***************"<<endl;
+
+// Выделение 0, 1, 4 разрядов. Не изменяем исходное число.
+
+short int z = 0x5c;
+
+cout << "z = " <<hex << z << endl;
+
+int k1 = z & 1;
+
+int k2 =(z & 2)>>1;
+
+int k3 =(z & 16)>>4;
+
+cout<<"k1 = "<<k1<<" k2 = "<<k2<<" k3 = "<<k3<<endl;
+
+cout << "z = " <<hex << z << endl;
+
+}

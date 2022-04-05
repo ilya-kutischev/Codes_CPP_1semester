@@ -1,0 +1,149 @@
+/*В массиве mas[n][m] удалить первую нулевую строку
+(т.е. все элементы строки равны нулю), подтянув все остальные строки.
+ При этом дополнительный массив не использовать.
+Оставшиеся строки массива после удаления нулевой строки
+ расположить в порядке убывания количества минимальных элементов в строке.
+ Указатели на строки. (Поиск количества минимальных элементов в строке
+ выполнять за один просмотр строки).
+*/
+
+#include<iostream>
+using namespace std;
+
+int** memory(int, int);
+void init(int**, int, int);
+void print(int**, int, int);
+void delMemory(int**, int);
+void sortByQuantityOfMins(int** mas, int* n, int* m); //сортирует по количеству минимальных в строках
+int kolMin(int* a, int n);                               //находит количество минимальных в строках
+void delFirstNullStr(int** p, int* n, int* m);          // удаляет первую нулевую строку
+void enter(int** p, int n, int m);                        //ввод массива вручную
+int main() {
+    int n = 0, m = 0;
+    int prWhile = 1, vibor;
+    int** ptr = 0;
+    while (prWhile) {
+        cout << "Enter number label:\n";
+        cout << "memory-------->1\n"
+            << "init---------->2\n"
+            << "enter arr----->3\n"
+            << "print--------->4\n"
+            << "do changes---->5\n"           //тут мы выполняем преобразование массива в связи с поставленной в условии задачей
+            << "delMemory----->6\n"
+            << "end programm-->7\n";
+
+
+        cin >> vibor;
+        switch (vibor) {
+        case 1: cout << "Enter n: \n ";  cin >> n;
+            cout << "Enter m: \n ";  cin >> m;
+            ptr = memory(n, m);
+            break;
+        case 2: init(ptr, n, m);	  break;
+        case 4: print(ptr, n, m);  break;
+        case 6: delMemory(ptr, n); break;
+        case 7: prWhile = 0; break;
+        case 5: delFirstNullStr(ptr, &n, &m); sortByQuantityOfMins(ptr, &n, &m); break;
+        case 3: enter(ptr, n, m);	  break;
+        }
+    }
+    cout << "END PROGRAMM" << endl;
+}
+int** memory(int n, int m) {			// функция выделения памяти
+    int** p = new int* [n];
+    for (int i = 0; i < n; i++)
+        p[i] = new int[m];
+    return p;
+}
+void init(int** p, int n, int m) {		// функция init()
+    srand(time(NULL));
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < m; j++)
+            p[i][j] = rand() % 25 - 10;
+}
+
+void enter(int** p, int n, int m) {		// функция enter()
+    cout << "\n enter array:\n";
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < m; j++)
+            cin >> p[i][j];
+}
+
+void print(int** p, int n, int m) {		// функция print() 
+    cout << "\n your array: \n";
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            cout.width(5);  cout << p[i][j];
+        }
+        cout << endl;
+    }
+}
+void delMemory(int** p, int n) {			// функция delMemory() 
+    for (int i = 0; i < n; i++)
+        delete[] p[i];
+    delete[] p;
+}
+
+int kolMin(int* a, int n) {
+    int min = *a, kolvo = 0;
+
+    for (int i = 0; i < n; i++) {
+
+        if (*(a + i) == min)kolvo++;   //если находит подобное наименьшее- увеличивает количество
+
+        if (*(a + i) < min) { min = *(a + i); kolvo = 1; }//если нашлось число меньше
+    }
+
+    return kolvo;
+
+}
+
+void delFirstNullStr(int** p, int* n, int* m) {
+    int fl = 1;
+    for (int i = 0; i < *n - 1; i++) {
+        if (fl) {
+            fl = 0;
+            for (int j = 0; j < *m; j++) {  //ищем строку где все нули
+                if (p[i][j] != 0) fl = 1;   //когда найдем меняем флаг
+            }
+
+            if (!fl) {delete[] p[i]; i--;  //удаляем в памяти нулевую строку
+        }                   //если нашли то повторяем круг но уже без этого цикла
+            continue;                       //если нет продолжаем поиск
+        }
+
+        p[i] = p[i + 1];              //пододвигаем строки
+
+
+
+    }
+    
+    (*n)--; //уменьшаем количество строк
+}
+
+
+void sortByQuantityOfMins(int** mas, int* n, int* m) { //сортируем эффективно при помощи сравнения по функции kolMin
+
+    int flag = 1; int* x;    int i = 1;
+
+    while (flag) {
+
+        flag = 0;
+
+        for (int j = 0; j < *n - i; j++)
+
+            if (kolMin(mas[j], *m) < kolMin(mas[j + 1], *m))
+
+            {
+
+                x = mas[j];       mas[j] = mas[j + 1];        mas[j + 1] = x;
+
+                flag = 1;
+
+            }
+
+        i++;
+
+    }
+
+}

@@ -1,0 +1,45 @@
+/*  Дана матрица matr(n, n). Умножить её на вектор vect(n)        */
+
+#include <iostream>
+
+using namespace std;
+
+const int D1 = 20, D2 = 20;
+
+
+int main() {
+
+	int matr[D1][D1]{};
+	int vect[D2]{};
+	int proizv[D2]{};
+
+	int i, j, n;
+	cout << "N="; //ввод количества строк
+	cin >> n;
+
+	cout << "Input matrix A \n";
+	//цикл по переменной i, в которой перебираем строки матрицы
+	for (i = 0; i < n; i++)
+		//цикл по переменной j, в котором перебираем элементы внутри строки
+		for (j = 0; j < n; j++)
+			cin >> matr[i][j]; //ввод очередного элемента матрицы
+	cout << "Input vector \n";
+	for (i = 0; i < n; i++)
+		cin >> vect[i];
+
+
+	for (i = 0; i < n; i++)
+		for (j = 0; j < n; j++)
+
+			proizv[i] = proizv[i] + vect[j] * matr[i][j];
+
+
+	cout << "matrix A \n";
+	for (i = 0; i < n; i++)
+
+		cout << proizv[i] << "\t"; //вывод вектора
+	cout << endl;
+	
+	system("pause");
+	return 0;
+}

@@ -1,0 +1,9 @@
+int KolvoMax(int x) {
+	int maxCifra, count;
+	while (x) {
+		if (x % 10 > maxCifra) { maxCifra = x % 10; count = 1; }
+		else if (x % 10 == maxCifra) { count++; }
+		x /= 10;
+	}
+	return count;
+}

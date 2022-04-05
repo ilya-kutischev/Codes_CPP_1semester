@@ -1,0 +1,16 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+  int x=1;
+ cout<<"vvedi chisla"<<endl;
+  while(x>0)
+  {
+   
+  cin>>x;
+if(x<0) {cout<<"otricatelnoe chislo= "<<x; break;}
+if(x==0) {cout<<"net"; break;};
+}
+	     return 0;
+  system("PAUSE");
+}

@@ -1,0 +1,29 @@
+#include <iostream>
+
+#include <cstring>
+
+using namespace std;
+
+const int DIM = 50;
+
+int main(){
+
+  char str[DIM];
+
+  int i, len;
+
+  cout<<"Vvedi stroku: "<<endl;
+
+  gets_s(str);                                                    // ввод строки
+
+  cout<<"stroka = "<<str<<endl;
+
+  for(i = 0; str[i]; i++);
+
+     cout<<"length = "<<i<<endl;
+
+  len = strlen(str);
+
+  cout<<"length = "<<len<<endl;
+
+}

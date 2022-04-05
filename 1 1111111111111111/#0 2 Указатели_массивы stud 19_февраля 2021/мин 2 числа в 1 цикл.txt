@@ -1,0 +1,70 @@
+//создается массив из n чисел. За один проход найти два минимальных числа и вывести.
+#include <iostream>
+
+using namespace std;
+
+const int DIM = 50;
+void funcTwoMin(int[], int);                //прототип функции
+int main() {
+
+    int a[DIM], n;
+    int fl = 1;
+    while (true) {                                          //это цикл меню
+        while (true) {                                                  // проверка корректности ввода
+
+            system("cls");                                       // очистить экран
+
+            cout << "\t Enter size:";         cin >> n;     // 5
+
+            if (n > 1 && n < DIM) break;
+
+            cout << "Nocorrect n\n";
+
+        }
+
+        cout << "\n\t enter___Massiv a(n)\n";
+
+        for (int i = 0; i < n; i++)
+
+            cin >> a[i];                         // числа от 1 до 50
+
+        for (int i = 0; i < n; i++)
+
+            cout << a[i] << ' ';
+        funcTwoMin(a, n);
+        cout << endl;
+        cout << "======================" << endl;
+        cout << "|  wanna continue?   |" << endl;
+        cout << "|  1 = yes, 0 = no   |" << endl;
+        cout << "======================" << endl;        //простое меню для удобства
+        cin >> fl;
+        if (!fl) { cout << "Good bye!"; break; }
+    }
+}
+void funcTwoMin(int a[], int n) {
+    int min = 0, min1 = 0, j, s, fl2 = 1;
+    for (j = 0; j < n; j++) {
+        if (fl2) {                    //флаг действует пока мы ищем два разных начальных элемента
+            if (j == n - 1 && a[j] == a[j + 1]) { cout << "Error"; return; }
+            if (a[j] == a[j + 1]) continue;
+
+            if (a[j] > a[j + 1]) { min = a[j];  min1 = a[j + 1]; fl2 = 0;} // тут выберем 2 изначальных РАЗНЫХ значения минимальных параметров
+
+            if (a[j] < a[j + 1]) { min = a[j + 1];  min1 = a[j]; fl2 = 0;}
+        }
+        
+        if (!fl2) {
+            if (a[j] < min && a[j] != min1) min = a[j];   //самое минимальное число станет на место min1,  а второе на место min
+            if (min < min1 && min != min1) {                 //добавил проверку на одинаковые числа
+                s = min1;  min1 = min; min = s;  //замена
+            }
+        }
+
+    }
+
+
+
+
+    cout << endl;
+    cout << "Minimalnie chisla= " << min << " i " << min1 << endl;
+}

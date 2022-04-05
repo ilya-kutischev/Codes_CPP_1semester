@@ -1,0 +1,25 @@
+#include<iostream>
+using namespace std;
+
+int** memory(int, int); 
+
+main() {
+    int n, m;
+    int prWhile = 1, vibor; 
+    int** ptr = 0;
+	
+    cout << "Enter n: \n ";  cin >> n;
+    cout << "Enter m: \n ";  cin >> m;
+    ptr = memory(n, m);
+
+}
+
+
+
+
+
+int** memory(int n, int m){			// функция выделения памяти
+   int** p = new int* [n];
+   for(int i = 0; i < n; i++)
+      p[i] = new int[m];
+   return p;

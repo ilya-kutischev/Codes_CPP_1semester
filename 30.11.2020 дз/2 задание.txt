@@ -1,0 +1,85 @@
+//В массиве А(N,M) строки расположить в порядке убывания количества минимальных элементов
+//в каждой строке. Использовать функцию для определения количества минимальных элементов в каждой строке.
+//Дополнительный массив не использовать.
+
+#include <iostream>
+
+using namespace std;
+
+const int D1 = 20, D2 = 20;
+int kolMin(int a[], int n);
+
+int main() {
+
+	int a[D1][D2];
+
+	int n, m;
+
+	while (true) {                                     // контроль ввода n и m
+
+		cout << "Vvedi n, m: ";  cin >> n >> m;
+
+		if (n > 0 && n <= D1 && m > 0 && m <= D2) break;
+
+		cout << " Error " << endl;
+
+	}
+
+
+	cout << "Vvedi matrix " << endl;                // ввод матрицы
+
+	for (int i = 0; i < n; i++)
+
+		for (int j = 0; j < n; j++)
+
+			cin >> a[i][j];
+
+
+
+
+	int x;
+		for (int i = 1; i < n; i++) //сортировка пузырьком
+			for (int k = 0; k < n - i; k++)
+				if (kolMin(a[k], m) < kolMin(a[k + 1], m)) {
+					for (int j = 0; j < m; j++) { x = a[k][j]; a[k][j] = a[k + 1][j]; a[k + 1][j] = x; } //обмен строк
+				}
+
+
+
+
+
+
+
+
+
+	cout << "\tMatrix:\n";                                          // вывод матрицы
+
+	for (int i = 0; i < n; i++) {
+
+		for (int j = 0; j < m; j++) {
+
+			cout.width(5);
+
+			cout << a[i][j] << ' ';
+
+		}
+
+		cout << endl;
+
+	}
+
+}
+
+int kolMin(int a[], int n) {
+	int min = a[1], kolvo = 0;
+
+	for (int i = 0; i < n; i++) {
+
+		if (a[i] == min)kolvo++;   //если находит подобное наименьшее- увеличивает количество
+
+		if (a[i] < min) { min = a[i]; kolvo = 1; }//если нашлось число меньше
+	}
+
+	return kolvo;
+
+}

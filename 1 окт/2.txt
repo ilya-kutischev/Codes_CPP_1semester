@@ -1,0 +1,13 @@
+#include <iostream>
+using namespace std;
+int main() {
+	int n,n1, r=1;
+	cout<<"vvedi n"<<endl;
+	cin>>n;
+	n1=n;
+	for(r=1; r<n1; r++)	n=n*r;
+	   
+	    cout<<"n!= "<<n;
+	     return 0;
+  system("PAUSE");
+}

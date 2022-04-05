@@ -1,0 +1,39 @@
+//вводится строка, программа Находит первое слово на букву А(в данном случае английской раскладки) и выводит на экран
+//количество букв с в этом слове.
+#include <iostream>
+
+#include <cstring>
+
+using namespace std;
+
+const int DIM = 50;
+
+int main() {
+
+    char str[DIM];
+
+    cout << "Vvedi stroku: " << endl;
+
+    gets_s(str);                                                    // ввод строки
+
+    cout << "stroka = " << str << endl;
+
+    int kol_c = 0, flag=0 ;
+
+    int l = strlen(str);
+
+    for (int i = 0; i < l - 1; i++)
+
+        if ((str[i+1] == 'A')&&(str[i]==' ')||(str[i] == 'A')&&(i==0)) { //проверка на то что слово начинается с А или строка начинается с А
+            int num = i+1;
+            while (str[num] != ' '&&num<l) {
+                cout << str[num];
+                if (str[num] == 'c')kol_c++; num++;
+            }
+            flag = 1;
+            break; //flag=1, значит есть слова с А
+        }
+    if (flag) cout << "      kol_c = " << kol_c << endl;
+    else cout << "Net slov nachinaushihsa s A";
+
+}

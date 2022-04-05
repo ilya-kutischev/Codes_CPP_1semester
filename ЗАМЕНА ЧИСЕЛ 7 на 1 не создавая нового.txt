@@ -1,0 +1,23 @@
+//В числе а заменить все 7 на 1.
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int  right = 1, left = 10;
+	long long unsigned int a;
+
+	cin >> a;
+
+	while (a / right != 0) 
+	{
+		if ((a % left) / right == 7)       // проверяем каждую цифру числа, является ли она 7
+		{
+			a = a - 7 * right + 1 * right; // если истино, то заменяет на 1
+		}                                  // если нет, то идёт дальше
+		right *= 10;                        
+		left *= 10;
+	} 
+
+	cout << a << endl;
+}

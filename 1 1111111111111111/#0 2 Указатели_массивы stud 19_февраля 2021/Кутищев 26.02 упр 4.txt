@@ -1,0 +1,125 @@
+/*Составить функцию, которая для одномерного массива целых чисел определяет
+количество пар соседних элементов, у которых старшие цифры одинаковые.
+В массиве mas[n][m], используя функцию, в каждой строке определить 
+количество пар соседних элементов, у которых старшие цифры одинаковые, и 
+расположить строки в порядке возрастания найденных количеств.
+*/
+#include <iostream>
+
+#include <ctime>
+
+using namespace std;
+
+int findHiNum(int* a);             //находит старшую цифру числа
+
+int countPairsComHiNums(int*, int* n);  //считает попарно числа с равными соседними старшими цифрами: Count Pairs with Common High Numbers
+
+const int DIM = 50;
+
+int main() {
+int fl2 = 1;
+while(fl2){                       //цикл меню
+	system("cls");
+
+	setlocale(LC_ALL, "RUS");
+	int fl, n, m, a[DIM][DIM];
+
+	cout << "N=";              //ввод количества строк
+	cin >> n;
+	cout << "M=";		 //ввод количества столбцов
+	cin >> m;
+	cout << endl;
+
+	cout << "Do you want to enter matr?" << endl;      //меню для возможного случайного заполнения матрицы.
+	cout << "==========================" << endl;
+	cout << "\tyes = 1\t random = 0" << endl;
+	cin >> fl;
+	if(fl){
+	
+	cout << "Input matrix  \n";	//цикл по переменной i, в которой перебираем строки матрицы
+	for ( int i = 0; i < n; i++)		//цикл по переменной j, в котором перебираем элементы внутри строки
+		for ( int j = 0; j < m; j++)
+			cin >> a[i][j]; 	//ввод очередного элемента матрицы
+	}
+	else {
+		srand(n + m);               //случайное заполнение числами от 0 до 100
+
+		for (int i = 0; i < n; i++)
+
+			for (int j = 0; j < m; j++)
+
+				a[i][j] = rand() % 100;
+	}
+
+	cout << "Original matrix: \n";     	//вывод начальной матрицы
+	for (int i = 0; i < n; i++)
+	{						
+		for (int j = 0; j < m; j++)
+			cout << a[i][j] << "\t"; 
+		cout << endl; 
+	}
+
+	int* pa[DIM];
+	for (int i = 0; i < n; i++)		// инициализация массива указателей
+		pa[i] = a[i];
+
+	int* x;
+	int fl1 = 1;
+	for (int i = 1; i < n; i++) {    	 // сортировка массива с использованием функции countPairsComHiNums
+		for (int j = 0; j < n - i; j++)
+			if (countPairsComHiNums(pa[j],&n) < countPairsComHiNums(pa[j + 1],&n)) { fl1 = 0; break; }
+		if (fl1)  break;                            
+
+		for (int j = 0; j < n - i; j++)
+
+			if (countPairsComHiNums(pa[j],&n) > countPairsComHiNums(pa[j + 1],&n))
+
+			{
+
+				x = pa[j];    pa[j] = pa[j + 1];   pa[j + 1] = x;
+
+			}
+
+	}
+	
+	cout << " Matrix after sorting" << endl; 	//вывод упорядоченного массива указателей
+	cout << " Used array_pointers:" << endl;
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++) {
+			cout.width(5);
+			cout << *(pa[i] + j);		// вывод массива, используя указатель		
+		}
+		cout << endl;
+	}
+
+
+	cout << "======================" << endl;
+	cout << "|  wanna continue?   |" << endl;
+	cout << "|  1 = yes, 0 = no   |" << endl;
+	cout << "======================" << endl;        //простое меню для удобства
+	cin >> fl2;
+	if (!fl2) { cout << "Good bye!"; break; }
+}
+
+	system("pause");
+	return 0;
+}
+ 
+int findHiNum(int* a) {
+	int hi, a1 = *a;
+	while (a1) {
+		hi = a1 % 10;
+		a1 /= 10;
+	}
+	return hi;
+}
+int countPairsComHiNums(int* a, int* n) {
+	int count = 0;
+	for (int i = 0; i < *n - 1; i++) {
+		if (findHiNum(a + i) == findHiNum(a + i + 1)) {
+			count++;
+		}
+   }
+	return(count);
+
+}

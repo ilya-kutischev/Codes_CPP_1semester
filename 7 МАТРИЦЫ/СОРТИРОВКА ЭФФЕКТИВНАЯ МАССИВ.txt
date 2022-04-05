@@ -1,0 +1,121 @@
+// Пример 2. Дан одномерный целочисленный массив.
+
+// Отсортировать массив методом "пузырька".
+
+// 1 вариант – не эффективная сортировка.
+
+// 2 вариант – эффективная сортировка (без лишних просмотров массива).
+
+#include <iostream>
+
+using namespace std;
+
+void vvodMas(int[], int);                                        // прототипы функций
+
+void vivodMas(int[], int);
+
+void sortMas(int[], int);
+
+void sortMas_Effect(int[], int);
+
+const int DIM = 50;
+
+int main(){
+
+    int a[DIM], n;
+
+    cout << "Enter size massiva n: ";      cin >> n;
+
+    vvodMas(a, n);
+
+    cout << "Isxodni massiv:\n";        
+
+    vivodMas(a, n);
+
+    sortMas(a, n);
+
+    cout << "Otsortirovanni massiv Effect:\n";
+
+    vivodMas(a, n);
+
+    vvodMas(a, n);
+
+    cout << "Isxodni massiv\n";
+
+    vivodMas(a, n);
+
+    sortMas_Effect(a, n);
+
+    cout << "Otsortirovanni massiv_Effect:\n";
+
+    vivodMas(a, n);
+
+}
+
+void vvodMas(int mas[], int n) {                           // функция vvodMas()
+
+    srand(n);
+
+  //  cout<<"\tVvedi  massiv \n";
+
+    for (int i = 0; i < n; i++)
+
+        mas[i] = rand() % 15 - 5;
+
+  // cin>>mas[i];
+
+}
+
+void vivodMas(int mas[], int n) {                           // функция vivodMas()
+
+    for (int i = 0; i < n; i++)
+
+        cout << mas[i] << ' ';
+
+    cout << endl;
+
+}
+
+void sortMas(int mas[], int n) {                                        // функция sortMas()
+
+    int x;                                                                     // вариат1 – не эффект. сортировка
+
+    for (int i = 1; i < n; i++)
+
+        for (int j = 0; j < n - i; j++)
+
+            if (mas[j] > mas[j + 1])
+
+            {
+
+                x = mas[j];       mas[j] = mas[j + 1];        mas[j + 1] = x;
+
+            }
+
+}
+
+void sortMas_Effect(int mas[], int n) {                  // функция sortMas_Effect()
+
+    int flag = 1;     int x, i = 1;                                   // вариат2 – эффект. сортировка
+
+    while (flag) {
+
+        flag = 0;
+
+        for (int j = 0; j < n - i; j++)
+
+            if (mas[j] > mas[j + 1])
+
+            {
+
+                x = mas[j];       mas[j] = mas[j + 1];        mas[j + 1] = x;
+
+                flag = 1;
+
+            }
+
+        i++;
+
+    }
+
+}

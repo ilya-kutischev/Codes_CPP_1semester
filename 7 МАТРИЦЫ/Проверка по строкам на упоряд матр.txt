@@ -1,0 +1,86 @@
+// Пример 0.  (Д.З. за 20.11.2020,  Никита В.)   Составить функцию, которая для
+
+// одномерного массива целых чисел определяет,  упорядочены  его элементы 
+
+// по возрастанию или нет.
+
+// Для заданной целочисленной матрицы matr(n, m), используя составленную
+
+//функцию, определить количество строк, значения элементов которых упорядочены
+
+// по возрастанию.
+#include <iostream>
+
+using namespace std;
+
+const int D1 = 20, D2 = 20;
+
+bool poryadok(int a[], int n);
+
+int main()
+
+{
+
+    int a[D1][D2];
+
+    int n, m;
+
+    cout << "Vvedi n, m: ";  cin >> n >> m;
+
+    if (!(n > 0 && n <= D1 && m > 0 && m <= D2))
+
+        cout << " Error " << endl;
+
+    cout << "Vvedi matrix " << endl;            // ввод матрицы
+
+    for (int i = 0; i < n; i++)
+
+        for (int j = 0; j < m; j++)
+
+            cin >> a[i][j];
+
+   // system("cls");
+
+    cout << "\tMatrix:\n";                                          // вывод матрицы
+
+    for (int i = 0; i < n; i++) {
+
+        for (int j = 0; j < m; j++) {
+
+            cout.width(5);
+
+            cout << a[i][j] << ' ';
+
+        }
+
+        cout << endl;
+
+    }
+
+    int prizn, kol = 0;
+
+    for (int i = 0; i < n; i++) {
+
+        prizn = poryadok(a[i], m);
+
+        if (prizn == 1) kol++;
+
+    }
+
+    cout << "Kol-vo ypor strok: " << kol;
+
+}
+
+ 
+
+bool poryadok(int a[], int n) {            // Проверка на упорядоченность
+
+    for (int i = 0; i < n - 1; i++)
+
+        if (a[i] > a[i + 1])
+
+            return 0;
+
+    return 1;
+
+}

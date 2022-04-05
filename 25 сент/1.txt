@@ -1,0 +1,35 @@
+#include <iostream>
+    using namespace std;
+    int main()
+        {
+            cout<<"Vvedi raznie a, b, c,d"<<endl;
+            int a,b,c,d,x,y,z,r;
+            x=0;
+            y=0;
+            z=0;
+            r=0;
+            cin>>a>>b>>c>>d;
+            
+            if(a>b&&a>c&&a>d) x=a;
+                else if((a>b&&a>d)||(a>c&&a>d)||(a>c&&a>b)) y=a;
+                    else if(a>b||a>d||a>c) z=a;
+                        else r=a;
+                        
+            if(b>a&&b>c&&b>d) x=b;
+                else if((b>a&&b>c)||(b>a&&b>d)||(b>c&&b>d)) y=b;
+                    else if(b>a||b>c||b>d) z=b;
+                        else r=b;
+            if(c>a&&c>b&&c>d) x=c;
+                else if((c>a&&c>b)||(c>a&&c>d)||(c>d&&c>b)) y=c;
+                    else if(c>a||c>b||c>d) z=c;
+                        else r=c;
+                        
+            if(d>a&&d>b&&d>c) x=d;
+                else if((d>a&&d>b)||(d>a&&d>c)||(d>b&&d>c)) y=d;
+                    else if(d>a||d>b||d>c) z=d;
+                        else r=d;
+            if(a==b||a==c||a==d||b==c||b==d||c==d)  cout<<"oshibka"<<endl;
+                else cout<<"chisla v poradke vozrastania: "<<r<<", "<<z<<", "<<y<<", "<<x<<endl;
+            return 0;
+            system("PAUSE");
+        }

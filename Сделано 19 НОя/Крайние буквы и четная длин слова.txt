@@ -1,0 +1,46 @@
+//Найти и вывести на экран все слова строки, в которых первый и последний символы совпадают и длина которых чётная.
+#include <iostream>
+
+#include <cstring>
+
+using namespace std;
+
+const int DIM = 50;
+
+int main() {
+
+    char str[DIM];
+
+    cout << "Vvedi stroku: " << endl;
+
+    gets_s(str);                                                    // ввод строки
+
+    cout << "stroka = " << str << endl;
+
+    char perv, posl; int k;
+
+    int l = strlen(str);
+
+    for (int i = 0; i < l - 1; i++)
+    {
+        
+        
+            if (i == 0 || str[i - 1] == ' ') { //начало строки или начало слова
+                perv = str[i];  //первая буква
+                k = i;
+                int n = 0;
+                while (str[k] != ' ' && k < l) { posl = str[k++]; n++; } //последняя буква и количество букв в слове
+                
+                if (n % 2 == 0 && perv == posl) { //проверка на подходящее условию
+                    cout << "podhodashee slovo: ";
+                    for (k = i; n--; k++)cout << str[k];
+                    cout << endl;
+                }
+               
+
+            
+            
+        }
+    }
+
+}

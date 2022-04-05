@@ -1,0 +1,118 @@
+/*
+В заданной матрице matr(n, m)  удалить строку (первую) с максимальным количеством элементов,
+ у которых старшая и младшая цифры совпадают, подтянув все остальные строки.
+Использовать функцию, которая определяет в одномерном массиве количество элементов,
+ у которых старшая и младшая цифры совпадают,
+
+ */
+
+#include <iostream>
+
+using namespace std;
+
+const int D1 = 20, D2 = 20;
+
+int funChisl(int mas[], int);          //proto
+
+int main() {
+
+	int a[D1][D2];
+
+	int  n, m;
+
+	while (true) {                                     // контроль ввода n и m
+
+	//  system("cls");
+
+		cout << "Vvedi n, m: ";  cin >> n >> m;
+
+		if (n > 0 && n <= D1 && m > 0 && m <= D2) break;
+
+		cout << " Error " << endl;
+
+	}
+
+
+
+
+
+	cout << "Vvedi matrix " << endl;                // ввод матрицы
+
+	for (int i = 0; i < n; i++)
+
+		for (int j = 0; j < m; j++)
+
+			cin >> a[i][j];
+
+
+
+	cout << "\tMatrix:\n";                                          // вывод матрицы
+
+	for (int i = 0; i < n; i++) {
+
+		for (int j = 0; j < m; j++) {
+
+			cout.width(5);
+
+			cout << a[i][j] << ' ';
+
+		}
+
+		cout << endl;
+
+	}
+	int indMax = 0, kolvoMax = 0;
+	for (int i = 0; i < n; i++) {
+
+		if (kolvoMax < funChisl(a[i], m)) { kolvoMax = funChisl(a[i], m); indMax = i; }   //поиск искомой строки
+	}
+	cout << "maximalnoe Kolichestvo= " << kolvoMax << " index Stroki = " << indMax << endl;
+
+
+	// удаляем строку с максимальным количеством искомых элементов
+
+	// и подтягиваем все остальные строки
+
+	for (int i = indMax; i < n - 1; i++) {
+
+		for (int j = 0; j < m; j++)
+
+			a[i][j] = a[i + 1][j];
+	}
+
+
+
+	cout << "\tRezult: " << endl;
+
+	for (int i = 0; i < n - 1; i++) {
+
+		for (int j = 0; j < m; j++) {
+
+			cout.width(5);
+
+			cout << a[i][j] << ' ';
+
+		}
+
+		cout << endl;
+
+	}
+
+}
+
+
+int funChisl(int mas[], int s) {
+	int kolvo = 0;
+
+	for (int i = 0; i < s; i++) {
+		int posl = 0, perv = mas[i] % 10;  //первый элемент
+		int x = mas[i];
+		while (x) {                       //последний элемент числа (присвоил х чтобы не менять сам массив)
+			posl = x % 10;
+			x /= 10;
+		}
+		if (posl == perv)kolvo++;         //подсчёт искомых чисел
+
+	}
+	return kolvo;
+}

@@ -1,0 +1,40 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+ string z;
+ 
+ double a, x, y;
+ 
+ cout<<"vvedi x i y"<<endl;
+ 
+ cin>>x>>y;
+ 
+ cout<<"vvedi + - * /"<<endl; 
+ 
+ cin>>z;
+if (z=="*")
+{ 
+    a=x*y;
+    cout<<a;
+}
+    else if (z=="+")
+        { 
+        a=x+y;
+        cout<<a;
+        }
+       else if (z=="-")
+       { 
+           a=x-y;
+           cout<<a;
+           }
+        else if (z=="/" &&!y==0)
+        { 
+            a=x/y; 
+            cout<<a;
+            }
+            else cout<<"error";
+ 
+ return 0;
+  system("PAUSE");
+}
